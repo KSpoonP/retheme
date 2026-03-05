@@ -33,23 +33,22 @@
         document.head.appendChild(lnk);
     }
 
-    // ── Logo: inject >scratch_ text into li.logo a ──────────────
+    // ── Logo: inject >scratch_ text into li.logo a only ────────
     function replaceLogo(key) {
         var color = THEMES[key].accent;
-        // Target the exact Scratch nav logo: li.logo > a
-        document.querySelectorAll('li.logo a').forEach(function(a) {
-            if (a.__tbLogo) return;
-            a.__tbLogo = true;
-            a.style.cssText += ';display:flex!important;align-items:center!important;text-decoration:none!important;';
-            var span = document.createElement('span');
-            span.id = 'tb-logo-text';
-            span.textContent = '>scratch_';
-            span.style.cssText = 'font-family:"IBM Plex Mono",monospace;font-size:1.1rem;font-weight:700;color:' + color + ';letter-spacing:-0.5px;line-height:1;white-space:nowrap;';
-            a.appendChild(span);
-        });
-        // Update color if already injected
         var existing = document.getElementById('tb-logo-text');
-        if (existing) existing.style.color = color;
+        if (existing) {
+            existing.style.color = color;
+            return;
+        }
+        var a = document.querySelector('li.logo a');
+        if (!a) return;
+        a.style.cssText += ';display:flex!important;align-items:center!important;text-decoration:none!important;padding:0 12px!important;';
+        var span = document.createElement('span');
+        span.id = 'tb-logo-text';
+        span.textContent = '>scratch_';
+        span.style.cssText = 'font-family:"IBM Plex Mono",monospace;font-size:1rem;font-weight:700;color:' + color + ';letter-spacing:-0.5px;line-height:1;white-space:nowrap;pointer-events:none;';
+        a.appendChild(span);
     }
 
     // ── CSS ─────────────────────────────────────────────────────
@@ -123,15 +122,15 @@
             background:${t.bg} !important;
             color:${t.accent} !important;
         }
-        /* Avatar — keep it circular, don't restyle */
-        .avatar-wrapper img.avatar {
+        /* Avatar — lock it down, never touch it */
+        img.avatar, .avatar-wrapper img {
             width:32px !important;
             height:32px !important;
             border-radius:50% !important;
             border:1px solid ${t.border} !important;
             object-fit:cover !important;
             opacity:1 !important;
-            max-width:none !important;
+            max-width:32px !important;
         }
         /* Message count badge */
         .message-count {
