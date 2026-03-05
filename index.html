@@ -126,11 +126,15 @@
       <hr class="divider"/>
       <div class="drag-label">// drag to your bookmarks bar</div>
       <div class="bookmarklet-wrap">
-        <a class="bookmarklet-btn" href="javascript:(function(){var t=&quot;default&quot;;var s=document.createElement(&quot;script&quot;);s.src=&quot;//is.gd/rethemescr&quot;;s.onload=function(){if(window.__tbThemeOverride)window.__tbThemeOverride(t);};window.__tbPendingTheme=t;void document.head.appendChild(s);})();">&gt;_ Scratch Re-theme</a>
+        <a id="bm" class="bookmarklet-btn">&gt;_ Scratch Re-theme</a>
         <div class="drag-hint">drag ↑ to your bar &nbsp;·&nbsp; or right-click → <span>bookmark this link</span></div>
       </div>
     </div>
   </div>
   <div class="footer">// drag the button — do not click it &nbsp;·&nbsp; works on <span>chrome</span>, firefox, edge, safari</div>
+
+<script>
+  document.getElementById('bm').href = 'javascript:(function(){var t="default";var s=document.createElement("script");s.src="//is.gd/rethemescr";s.onload=function(){if(window.__tbThemeOverride)window.__tbThemeOverride(t);};window.__tbPendingTheme=t;void document.head.appendChild(s);})();';
+</script>
 </body>
 </html>
