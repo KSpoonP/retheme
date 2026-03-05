@@ -23,7 +23,7 @@
     function replaceFavicon(key) {
         var color = THEMES[key].accent;
         var svg = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">'
-                + '<rect width="32" height="32" fill="#0d0d0d"/>'
+                + '<rect width="32" height="32" rx="8" ry="8" fill="#0d0d0d"/>'
                 + '<text x="1" y="25" font-family="monospace" font-size="20" font-weight="900" fill="' + color + '">&gt;_</text>'
                 + '</svg>';
         document.querySelectorAll('link[rel*="icon"]').forEach(function(el) { el.remove(); });
