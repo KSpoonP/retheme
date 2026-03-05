@@ -491,12 +491,16 @@
         };
     });
 
-    // ── MutationObserver ────────────────────────────────────────
-    new MutationObserver(function(mutations) {
-        var added = false;
-        mutations.forEach(function(m) { if (m.addedNodes.length) added = true; });
-        if (added) replaceLogo(currentTheme);
-    }).observe(document.body, { childList:true, subtree:true });
+    // ── MutationObserver — logo only, once, then disconnect ─────
+    var logoObserver = new MutationObserver(function() {
+        if (document.querySelector('li.logo a') && !document.getElementById('tb-logo-text')) {
+            replaceLogo(currentTheme);
+        }
+        if (document.getElementById('tb-logo-text')) {
+            logoObserver.disconnect();
+        }
+    });
+    logoObserver.observe(document.body, { childList:true, subtree:true });
 
     console.log('%c// >scratch_ retheme loaded', 'font-family:monospace;color:#e8ff47;background:#111;padding:2px 8px;');
 
