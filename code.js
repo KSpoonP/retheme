@@ -92,6 +92,28 @@
             border-bottom: 1px solid ${t.navBorder} !important;
             box-shadow: none !important;
         }
+
+        /* ── White bar killer ── */
+        [class*="navbar-wrapper"], [class*="NavbarWrapper"],
+        [class*="nav-wrapper"], [class*="NavWrapper"],
+        [class*="header-wrapper"], [class*="HeaderWrapper"],
+        [class*="menu-bar-wrapper"], [class*="MenuBarWrapper"],
+        [class*="menu-bar"] > div, [class*="MenuBar"] > div,
+        [class*="sub-nav"], [class*="SubNav"],
+        [class*="subNav"], [class*="subnav"] {
+            background: ${t.navBg} !important;
+            box-shadow: none !important;
+            border: none !important;
+            outline: none !important;
+        }
+        /* Scratch specifically renders a white bar via ::after on the nav */
+        #navigation::after, .NavBar::after, [class*="NavBar"]::after,
+        header::after, [class*="navbar"]::after, [class*="menu-bar"]::after,
+        [class*="MenuBar"]::after {
+            background: ${t.navBg} !important;
+            box-shadow: none !important;
+            border: none !important;
+        }
         #navigation *, .navigation *, nav#nav *, .NavBar *,
         [class*="NavBar"] *, [class*="navbar"] * {
             font-family: 'IBM Plex Mono', monospace !important;
